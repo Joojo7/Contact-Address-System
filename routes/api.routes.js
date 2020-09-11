@@ -199,7 +199,7 @@ router.post(
     clientKey.clientKey,
     checkSchema(ContactValidatorSchema.create),
     requestBodyValidator.check,
-    contactController.createContact
+    contactController.createContact 
 );
 
 router.get(
