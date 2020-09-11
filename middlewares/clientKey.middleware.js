@@ -1,7 +1,7 @@
 const Response = require('./../classes/response');
 const { UNAUTHORIZED} = require('./../errorDefinition/errors.map');
 
-const ACCESS_KEY = '4!R_45!4_T37K';
+const ACCESS_KEY = process.env.CLIENT_KEY;
 class ClientKeyMiddleware {
     static async clientKey(req, res, next) {
         try {
