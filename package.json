@@ -29,6 +29,7 @@
     "firebase-admin": "^6.0.0",
     "geolib": "^2.0.24",
     "gps-distance": "0.0.4",
+    "helmet": "^4.1.1",
     "is-valid-coordinates": "^1.0.0",
     "jsonwebtoken": "^8.2.1",
     "lodash": "^4.17.11",

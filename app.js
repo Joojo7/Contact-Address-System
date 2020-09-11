@@ -3,13 +3,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const logRequestBody = require('./middlewares/logRequestBody.middleware');
-
+const helmet = require("helmet");
 
 // Init Env
 if (process.env.ENV != 'production' && process.env.ENV != 'dev_online') {
     require('dotenv').config();
 }
 console.log(`Initialised env on ${process.env.ENV} 🛰`)   
+
 
 
 
@@ -32,6 +33,10 @@ app.use(express.static('public'));
 // http logs
 app.use(morgan('combined'));
 app.use(logRequestBody);
+
+
+app.use(helmet());
+
 
 // response class
 const Response = require('./classes/response');
