@@ -2,19 +2,19 @@ swagger: "2.0"
 info:
   description: ""
   version: "1.0.0"
-  title: "API documentaiton for iCycle Malaysia Sdn. Bhd"
+  title: "API documentaiton for demo contacts api"
 host: "petstore.swagger.io"
 basePath: "/api/v1.0/"
 schemes:
 - "https"
 - "http"
 paths:
-  /api/v1.0/orders:
+  /api/v1.0/people:
     
     post:
       tags:
-      - "Orders"
-      summary: "Create an order"
+      - "People"
+      summary: "Create an people"
       operationId: "post"
       consumes:
       - "application/json"
@@ -38,14 +38,14 @@ paths:
           $ref: "#/definitions/Order"
       responses:
         "200":
-          description: "order"
+          description: "people"
       security:
       - Client-key: []
 
     get:
       tags:
-      - "Orders"
-      summary: "Get all orders"
+      - "People"
+      summary: "Get all people"
       description: ""
       operationId: "get"
       consumes:
@@ -82,7 +82,7 @@ paths:
         in: "query"
         required: false
         type: "string" 
-      - name: "order"
+      - name: "people"
         in: "query"
         required: false
         type: "string" 
@@ -92,16 +92,16 @@ paths:
         type: "string" 
       responses:
         "200":
-          description: "orders"
+          description: "people"
       security:
       - Client-key: []    
       
  
-  /api/v1.0/orders/{id}:
+  /api/v1.0/people/{id}:
     get:
       tags:
-      - "Orders"
-      summary: "Get an order"
+      - "People"
+      summary: "Get an people"
       consumes:
       - "application/json"
       produces:
@@ -115,11 +115,11 @@ paths:
       - in: "path"
         type: "string"
         name: "id"
-        description: "id of order"
+        description: "id of people"
         required: true
       responses:
         "200":
-          description: "order"
+          description: "people"
       security:
       - Client-key: []
       - x-auth: []
@@ -170,7 +170,7 @@ paths:
       - in: "query"
         type: "string"
         name: "id"
-        description: "id of the order (the payment_id is in the order object)"
+        description: "id of the people (the payment_id is in the people object)"
         required: false
       - in: "path"
         type: "string"
@@ -188,7 +188,7 @@ paths:
     get:
       tags:
       - "Payment"
-      summary: "Check the payment status of an order"
+      summary: "Check the payment status of an people"
       consumes:
       - "application/json"
       produces:
@@ -202,7 +202,7 @@ paths:
       - in: "path"
         type: "string"
         name: "id"
-        description: "id of order"
+        description: "id of people"
         required: true
       responses:
         "200":

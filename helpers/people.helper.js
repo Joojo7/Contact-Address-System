@@ -1,15 +1,15 @@
 
-const paymentsModel = require('../models/payment/payment.model');
+const peoplesModel = require('../models/people/people.model');
 
 
 
-class Payment {
+class People {
 
 
- //this is used to create a payment
- static async create(payment) {
+ //this is used to create a people
+ static async create(person) {
     try {
-        const result = await paymentsModel.create(payment);
+        const result = await peoplesModel.create(person);
 
         return result;
     } catch (error) {
@@ -17,31 +17,16 @@ class Payment {
     }
 }
 
-static async update({ payment_id, payment }) {
-    try {
-        const result = await paymentsModel.findOneAndUpdate( 
-            { payment_id },
-            { $set: payment }, {new: true}
-        );
 
-    
-        return result;
-    } catch (error) {
-        throw error;
-    }
-}
 
 
     
-    static async getPayments({
+    static async getPeople({
         sort,
         order,
         page,
         recordPerPage,
-        filter,
-        fromDate,
-        toDate,
-        status
+        filter
     }) {
         try {
             sort = sort || 'updated_at';
@@ -55,36 +40,28 @@ static async update({ payment_id, payment }) {
               deleted: false
             };
 
-            let query = paymentsModel.aggregate().match(matchQuery);
+            let query = peoplesModel.aggregate().match(matchQuery);
             
-            
-            // filter
-            if (fromDate && toDate) {
-                query.match({
-                    created_at: {
-                        $lte: new Date(toDate),
-                        $gte: new Date(fromDate)
-                    }
-                });
-            }
+           
 
-            if (status) {
-                query.match({
-                    status: status
-                });
-            }
 
             if (filter) {
                 query.match({
                     $or: [
                         {
-                            payment_name: {
+                            name: {
                                 $regex: `${filter}`,
                                 $options: 'xi'
                             }
                         },
                         {
-                            status: {
+                            email: {
+                                $regex: filter,
+                                $options: 'xi'
+                            }
+                        },
+                        {
+                            number: {
                                 $regex: filter,
                                 $options: 'xi'
                             }
@@ -96,11 +73,10 @@ static async update({ payment_id, payment }) {
            
 
             query.project({
-                payment_id: 1,
-                status: 1,
-                method: 1,
-                credit_card: 1,
-                created_at: 1,
+                person_id: 1,
+                name: 1,
+                age: 1,
+                height: 1,
                 updated_at: 1
         })
 
@@ -122,7 +98,7 @@ static async update({ payment_id, payment }) {
 
                 .project({
                     total_count: true,
-                    payments: {
+                    people: {
                         $slice: ['$data', startIndex, recordPerPage]
                     }
                 });
@@ -140,10 +116,10 @@ static async update({ payment_id, payment }) {
         }
     }
 
-    static async getPayment(id) {
+    static async getPerson(id) {
 
-        let result = await paymentsModel.findOne({
-            payment_id: id
+        let result = await peoplesModel.findOne({
+            people_id: id
         })
         if (!result) {
             return null;
@@ -152,12 +128,6 @@ static async update({ payment_id, payment }) {
         return result; 
     }
 
-
-    static async delete(_id) {
-        const payment = await paymentsModel.delete({_id});
-
-        return payment;
-    }
 }
 
-module.exports = Payment;
+module.exports = People;

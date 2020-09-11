@@ -4,31 +4,18 @@ const mongooseSoftDelete = require('mongoose-delete');
 
 const Schema = new mongoose.Schema(
     {
-        payment_id:String,
-        status: {
-            type: String,
-            enum: ['pending', 'completed'],
-            default: "pending"
-        },
-        method: {
-            type: String,
-            default: "CREDIT_CARD"
-        },
-        description: {
+        person_id:String,
+        name: {
             type: String,
             required: true
         },
-        total_amount: {
+        age: {
             type: Number,
             required: true
         },
-        payment_date: {
-            type: Date,
-            default: ""
-        },
-        credit_card: {
-            type: String,
-            default: ""
+        height: {
+            type: Number,
+            required: true
         }
 
     },
@@ -36,7 +23,7 @@ const Schema = new mongoose.Schema(
 );
 
 Schema.pre('save', function(next) {
-    this.payment_id = this._id; 
+    this.person_id = this._id; 
     next();
 });
 
@@ -44,4 +31,4 @@ Schema.plugin(mongooseSoftDelete, {
     overrideMethods: 'all'
 });
 
-module.exports = db.model('payment', Schema);
+module.exports = db.model('people', Schema);

@@ -4,27 +4,23 @@ const mongooseSoftDelete = require('mongoose-delete');
 
 const Schema = new mongoose.Schema(
     {
-        hotel_id:String,
-        hotel_name: {
+        person_id:String,
+        contact_id: String,
+        email: {
             type: String,
             required: true
         },
-        number_of_rooms: {
-            type: Number,
-            required: true
-        },
-        stars: Number,
-        address:  {
+        number: {
             type: String,
             required: true
-        },
+        }
+
     },
     { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } }
 );
 
 Schema.pre('save', function(next) {
-    this.hotel_id = this._id; 
-    this.created_by = currentUser.uid;
+    this.contact_id = this._id; 
     next();
 });
 
@@ -32,4 +28,4 @@ Schema.plugin(mongooseSoftDelete, {
     overrideMethods: 'all'
 });
 
-module.exports = db.model('hotel', Schema);
+module.exports = db.model('contact', Schema);

@@ -1,15 +1,15 @@
 
-const hotelsModel = require('../models/hotel/hotel.model');
+const contactsModel = require('../models/contacts/contact.model');
 
 
 
-class Hotel {
+class Contact {
 
 
- //this is used to create a hotel
- static async create(hotel) {
+ //this is used to create a contact
+ static async create(contact) {
     try {
-        const result = await hotelsModel.create(hotel);
+        const result = await contactsModel.create(contact);
 
         return result;
     } catch (error) {
@@ -17,62 +17,56 @@ class Hotel {
     }
 }
 
- //   TODO: UPDATE HOTEL HELPER
+
 
 
     
-    static async getHotels({
+    static async getContacts({
         sort,
         order,
         page,
         recordPerPage,
         filter,
-        fromDate,
-        toDate
     }) {
         try {
             sort = sort || 'updated_at';
             order = order || 'desc';
             filter = filter || '';
-            page = page || 1;
+            page = parseInt(page) || 1;
             recordPerPage = parseInt(recordPerPage) || 10;
             const startIndex = (page - 1) * recordPerPage;
 
-            let matchQuery = {
-              deleted: false
-            };
-
-
-
-            let query = hotelsModel.aggregate().match(matchQuery)
+            let query = contactsModel.aggregate().match({})
             .lookup({
-                from: 'rooms',
-                localField: 'hotel_id',
-                foreignField: 'hotel_id',
-                as: 'rooms'
+                from: 'peoples',
+                localField: 'person_id',
+                foreignField: 'person_id',
+                as: 'people'
+            })
+            .unwind({
+                path: '$people',
+                preserveNullAndEmptyArrays: true
             })
             
-            // filter
-            if (fromDate && toDate) {
-                query.match({
-                    created_at: {
-                        $lte: new Date(toDate),
-                        $gte: new Date(fromDate)
-                    }
-                });
-            }
+            
 
             if (filter) {
                 query.match({
                     $or: [
                         {
-                            hotel_name: {
+                            "people.name": {
                                 $regex: `${filter}`,
                                 $options: 'xi'
                             }
                         },
                         {
-                            address: {
+                            email: {
+                                $regex: filter,
+                                $options: 'xi'
+                            }
+                        },
+                        {
+                            number: {
                                 $regex: filter,
                                 $options: 'xi'
                             }
@@ -84,18 +78,21 @@ class Hotel {
            
 
             query.project({
-                hotel_id: 1,
-                hotel_name: 1,
-                address: 1,
-                stars: 1,
-                rooms: 1,
-                number_of_rooms: 1,
+                contact_id: 1,
+                person_id: 1,
+                name: "$people.name",
+                age: "$people.age",
+                height: "$people.height",
+                email: 1,
+                number: 1,
+                created_at: 1,
+                updated_at: 1
         })
 
             // sort
             query
                 .sort({
-                    [sort]: order, start_date: order
+                    [sort]: order
                 })
 
                 .group({
@@ -110,16 +107,16 @@ class Hotel {
 
                 .project({
                     total_count: true,
-                    hotels: {
+                    contacts: {
                         $slice: ['$data', startIndex, recordPerPage]
                     }
                 });
             
             let result = await query;
-          
+            
+
             if (!result[0]) {
-                return {_id: null, total_count: 0,  hotels: [] }
-                    
+                return result;
             }
 
             return result[0]
@@ -128,10 +125,10 @@ class Hotel {
         }
     }
 
-    static async getHotel(id) {
+    static async getContact(id) {
 
-        let result = await hotelsModel.findOne({
-            hotel_id: id
+        let result = await contactsModel.findOne({
+            contact_id: id
         })
         if (!result) {
             return null;
@@ -140,12 +137,6 @@ class Hotel {
         return result; 
     }
 
-
-    static async delete(_id) {
-        const hotel = await hotelsModel.delete({_id});
-
-        return hotel;
-    }
 }
 
-module.exports = Hotel;
+module.exports = Contact;

@@ -166,59 +166,51 @@ router.get(
 
 
 
-// Orders
+// Peoples
 // #region
-const ordersController = require('../controllers/order/order.controller');
+const peopleController = require('../controllers/people/people.controller');
+const PeopleValidatorSchema = require('./validators/people.validator');
 
 router.post(
-    '/orders',
+    '/people',
     clientKey.clientKey,
-    authMiddleware.authorize,
+    checkSchema(PeopleValidatorSchema.create),
     requestBodyValidator.check,
-    ordersController.createOrder
+    peopleController.createPeople
 );
 
 router.get(
-    '/orders',
+    '/people',
     clientKey.clientKey,
-    ordersController.getOrders
+    peopleController.getPeoples
 );
-
-router.get(
-    '/hotels',
-    clientKey.clientKey,
-    ordersController.getHotels
-);
-
-router.patch(
-    '/orders/:id',
-    clientKey.clientKey,
-    requestBodyValidator.check,
-    ordersController.updateOrder
-);
-
-router.patch(
-    '/make-payment/:credit_card',
-    clientKey.clientKey,
-    requestBodyValidator.check,
-    ordersController.makePayment
-);
-
-router.get(
-    '/orders/:id',
-    clientKey.clientKey,
-    ordersController.getOrder
-);
-
-router.get(
-    '/payment-status/:id',
-    clientKey.clientKey,
-    ordersController.paymentStatus
-);
-
 
 
 // #endregion
+
+
+// Contacts
+// #region
+const contactController = require('../controllers/contacts/contact.controller');
+const ContactValidatorSchema = require('./validators/contact.validator');
+
+router.post(
+    '/contacts',
+    clientKey.clientKey,
+    checkSchema(ContactValidatorSchema.create),
+    requestBodyValidator.check,
+    contactController.createContact
+);
+
+router.get(
+    '/contacts',
+    clientKey.clientKey,
+    contactController.getContacts
+);
+
+
+// #endregion
+
 
 
 
