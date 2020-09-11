@@ -10,12 +10,12 @@ class contact {
         try {
             const body = req.body
 
-            const person = await peoplesModel.findOne({person_id: body.person_id});
-            console.log('person:', person)
+            const person = await peoplesModel.findOne({person_id: req.params.id});
 
             if (!person) {
                 throw USER_NOT_FOUND
             }
+            body.person_id = req.params.id;
             const contact = await ContactHelper.create(body);
 
             res.sendSuccess(contact);

@@ -31,7 +31,6 @@ class people {
         try {
             const options = {
                 sort: req.query.sort,
-                people: req.query.people,
                 page: req.query.page,
                 recordPerPage: req.query.pageSize,
                 filter: req.query.filter

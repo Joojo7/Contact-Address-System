@@ -195,7 +195,7 @@ const contactController = require('../controllers/contacts/contact.controller');
 const ContactValidatorSchema = require('./validators/contact.validator');
 
 router.post(
-    '/contacts',
+    '/people/:id/contacts',
     clientKey.clientKey,
     checkSchema(ContactValidatorSchema.create),
     requestBodyValidator.check,
