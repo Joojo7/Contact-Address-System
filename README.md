@@ -14,6 +14,15 @@ Kindly authorize via 'Client-key' through the following steps:
 ```
 4. LanguageId of '1' should be included in all header requests.   
 
+## Setting up and running
+1. Download the repository.
+2. set the PORT (port for listening), API_VERSION (the version), MONGODB_URL (mongodb url), ENV (environment name) in you .env file locally
+3. Enter the below key into the 'value' input box.
+```javascript
+4!R_45!4_T37K
+```
+4. LanguageId of '1' should be included in all header requests.   
+
 ## Extra features
 ### Language Message Constants
 - This feature allows for translation in relation to response message constants. As stated above, LanguageId of '1' should be included in all header requests to represent english. With future developments in mind other language message constants can be added  
