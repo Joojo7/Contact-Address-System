@@ -16,7 +16,7 @@ Kindly authorize via 'Client-key' through the following steps:
 
 ## Setting up and running
 1. Download the repository.
-2. set the PORT (port for listening), API_VERSION (the version), MONGODB_URL (mongodb url), ENV (environment name), CLIENT_KEY (client key reference) and in you .env file locally
+2. set the PORT (port for listening), API_VERSION (the version), MONGODB_URL (mongodb url), ENV (environment name) and CLIENT_KEY (client key reference) in your .env file locally
 3. run npm install to get all dependencies
 4. run nodemon to start the server and make it ready for requests 
 
