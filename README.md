@@ -5,12 +5,12 @@
 Documentation concerning the APIs for the project has been hosted on heroku and can be found <a href="https://demo-contacts-api-airiasia.herokuapp.com/api/v1.0/api-docs/#/">here</a> 
 
 ## Tasks
-Any valid document db should be used, mongo is preferred- redis can be a choice as well as long as the api works as expected | ✔ 
-At least one or two integration tests for each of the APIs with in memory db if possible | ✔ 
-Validation of requests | ✔ 
-Precise instructions on setting up and running the project | ✔ 
-A demo video of all the apis working as expected
-Setup in heroku or any free cloud setup and expose the service(optional) | ✔ 
+1. Any valid document db should be used, mongo is preferred- redis can be a choice as well as long as the api works as expected | ✔ 
+2. At least one or two integration tests for each of the APIs with in memory db if possible | ✔ 
+3. Validation of requests | ✔ 
+4. Precise instructions on setting up and running the project | ✔ 
+5. A demo video of all the apis working as expected
+6. Setup in heroku or any free cloud setup and expose the service(optional) | ✔ 
 
 ## Usage
 Kindly authorize via 'Client-key' through the following steps:
