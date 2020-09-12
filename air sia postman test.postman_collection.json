@@ -1,0 +1,203 @@
+{
+	"info": {
+		"_postman_id": "d33caf1e-c467-4994-85af-c24d032625ca",
+		"name": "air sia postman test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "requests",
+			"item": [
+				{
+					"name": "Create contact",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Client-key",
+								"value": "{{AAA-Client-key}}",
+								"type": "text"
+							},
+							{
+								"key": "languageId",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"gauntlet@gmail.com\",\n    \"number\": \"0129918273\"\n}"
+						},
+						"url": {
+							"raw": "{{AAAd}}people/5f5b373bbcddcebee05adfbb/contacts",
+							"host": [
+								"{{AAAd}}people"
+							],
+							"path": [
+								"5f5b373bbcddcebee05adfbb",
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get contacts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Client-key",
+								"value": "{{AAA-Client-key}}",
+								"type": "text"
+							},
+							{
+								"key": "languageId",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{AAAd}}/contacts?q=tony",
+							"host": [
+								"{{AAAd}}"
+							],
+							"path": [
+								"contacts"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "tony"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create person",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Client-key",
+								"value": "{{AAA-Client-key}}",
+								"type": "text"
+							},
+							{
+								"key": "languageId",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Gamora\",\n    \"age\": 32,\n    \"height\": 165\n}"
+						},
+						"url": {
+							"raw": "{{AAAd}}/people",
+							"host": [
+								"{{AAAd}}"
+							],
+							"path": [
+								"people"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get People",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Client-key",
+								"value": "{{AAA-Client-key}}",
+								"type": "text"
+							},
+							{
+								"key": "languageId",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:7000/api/v1.0/people",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"v1.0",
+								"people"
+							],
+							"query": [
+								{
+									"key": "filter",
+									"value": "Nani",
+									"disabled": true
+								},
+								{
+									"key": "order",
+									"value": "desc",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "check_out_date",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

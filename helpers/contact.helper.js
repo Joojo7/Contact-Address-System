@@ -116,7 +116,11 @@ class Contact {
             
 
             if (!result[0]) {
-                return result;
+                return {
+                    "_id": null,
+                    "total_count": 0,
+                    "contacts": []
+                };
             }
 
             return result[0]
