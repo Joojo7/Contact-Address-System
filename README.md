@@ -4,8 +4,17 @@
 ## Documentation
 Documentation concerning the APIs for the project has been hosted on heroku and can be found <a href="https://demo-contacts-api-airiasia.herokuapp.com/api/v1.0/api-docs/#/">here</a> 
 
+## Tasks
+1. Any valid document db should be used, mongo is preferred- redis can be a choice as well as long as the api works as expected | ✔ 
+2. At least one or two integration tests for each of the APIs with in memory db if possible | ✔ 
+3. Validation of requests | ✔ 
+4. Precise instructions on setting up and running the project | ✔ 
+5. A demo video of all the apis working as expected | ✔
+6. Setup in heroku or any free cloud setup and expose the service(optional) | ✔ 
+
 ## Usage
-Kindly authorize via 'Client-key' through the following steps:
+Click <a href="https://res.cloudinary.com/dbkakssug/video/upload/v1599924101/Screen_Recording_2020-09-12_at_11.15.06_PM.mov">here</a>  for a Video description on testing the api via swagger
+- Kindly authorize via 'Client-key' through the following steps:
 1. Click <a href="https://demo-contacts-api-airiasia.herokuapp.com/api/v1.0/api-docs/#/">here</a>  to access and use the endpoints
 2. On the Swagger page, kindly click the 'Authorize' button on the right upper section of the page
 3. Enter the below key into the 'value' input box.
